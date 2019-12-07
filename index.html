@@ -12,16 +12,21 @@
 
         The default size of the canvas is 300 pixels × 150 pixels (width × height). But custom sizes can be defined using the HTML height and width property.
     </p>
+    <p>Вправо</p>
     <h3>Basic usage of canvas</h3>
+    <p>Вниз</p>
     <p>The canvas is initially blank. To display something, a script first needs to access the rendering context and draw on it. The &lt;canvas&gt; element has a method called getContext(), used to obtain the rendering context and its drawing functions. getContext() takes one parameter, the type of context. For 2D graphics, such as those covered by this tutorial, you specify "2d" to get a CanvasRenderingContext2D.</p>
     <p>The first line in the script retrieves the node in the DOM representing the &lt;canvas&gt; element by calling the document.getElementById() method. Once you have the element node, you can access the drawing context using its getContext() method.</p>
+    <p>Вправо</p>
     <h3>Drawing shapes with canvas</h3>
     <h3>The Grid</h3>
     <p>Normally 1 unit in the grid corresponds to 1 pixel on the canvas. The origin of this grid is positioned in the top left corner at coordinate (0,0). All elements are placed relative to this origin. So the position of the top left corner of the blue square becomes x pixels from the left and y pixels from the top, at coordinate (x,y). </p>
+    <p>Вправо</p>
     <h3>Drawing rectangles</h3>
     <p> &lt;canvas&gt; only supports two primitive shapes: rectangles and paths (lists of points connected by lines). 
         There are three functions that draw rectangles on the canvas:
     </p>
+    <p>Вниз</p>
     <p><h4>fillRect(x, y, width, height)</h4>
         Draws a filled rectangle.
         <h4>strokeRect(x, y, width, height)</h4>
@@ -29,7 +34,9 @@
         <h4>clearRect(x, y, width, height)</h4>
         Clears the specified rectangular area, making it fully transparent.
     </p>
+    <p>Вниз</p>
     <p>The fillRect() function draws a large black square 100 pixels on each side. The clearRect() function then erases a 60x60 pixel square from the center, and then strokeRect() is called to create a rectangular outline 50x50 pixels within the cleared square.</p>
+    <p>Вправо</p>
     <h3>Drawing Paths</h3>
     <p>To make shapes using paths, we take some extra steps:</p>
     <ol>
@@ -37,6 +44,7 @@
         <li>Then you use drawing commands to draw into the path</li>
         <li>Once the path has been created, you can stroke or fill the path to render it</li>
     </ol>
+    <p>Вниз</p>
     <p>Here are the functions used to perform these steps:</p>
     <p> <h4>beginPath()</h4>
         Creates a new path. Once created, future drawing commands are directed into the path and used to build the path up.
@@ -44,6 +52,7 @@
         Methods to set different paths for objects.
         <h4>closePath()</h4>
         Adds a straight line to the path, going to the start of the current sub-path.
+        <p>Вниз</p>
         <h4>stroke()</h4>
         Draws the shape by stroking its outline.
         <h4>fill()</h4>
@@ -54,21 +63,23 @@
 
         For drawing straight lines, use the lineTo() method.
         <h4>lineTo(x, y)</h4>
-        Draws a line from the current drawing position to the position specified by x and y.
+        Draws a line from the current drawing position to the position specified by x and y.</p>
         
-        
-        To draw arcs or circles, we use the arc() or arcTo() methods.
+        <p>Вниз</p>
+        <p>To draw arcs or circles, we use the arc() or arcTo() methods.
         <h4>arc(x, y, radius, startAngle, endAngle, anticlockwise)</h4>
         Draws an arc which is centered at (x, y) position with radius r starting at startAngle and ending at endAngle going in the given direction indicated by anticlockwise (defaulting to clockwise).
         <h4>arcTo(x1, y1, x2, y2, radius)</h4>
         Draws an arc with the given control points and radius, connected to the previous point by a straight line.
     </p>
+    <p>Вправо</p>
     <h3>Using images</h3>
     <p>Importing images into a canvas is basically a two step process:</p>
     <ol>
         <li>Get a reference to an HTMLImageElement object or to another canvas element as a source. It is also possible to use images by providing a URL.</li>
         <li>Draw the image on the canvas using the drawImage() function.</li>
     </ol>
+    <p>Вниз</p>
     <p>The canvas API is able to use any of the following data types as an image source:</p>
     <p> <h4>HTMLImageElement</h4>
         These are images created using the Image() constructor, as well as any &lt;img&gt; element.
@@ -80,6 +91,7 @@
         You can use another &lt;canvas&gt; element as your image source.
         These sources are collectively referred to by the type CanvasImageSource.
     </p>
+    <p>Вправо</p>
     <h3>Transformations</h3>
     <p>The first of the transformation methods we'll look at is translate(). This method is used to move the canvas and its origin to a different point in the grid.</p>
     <p><h4>translate(x, y)</h4>
@@ -91,11 +103,58 @@
         Rotates the canvas clockwise around the current origin by the angle number of radians.
         The rotation center point is always the canvas origin. To change the center point, we will need to move the canvas by using the translate() method.
     </p>
+    <p>Вниз</p>
     <p>The next transformation method is scaling. We use it to increase or decrease the units in our canvas grid. This can be used to draw scaled down or enlarged shapes and bitmaps.</p>
     <p> <h4>scale(x, y)</h4>
         Scales the canvas units by x horizontally and by y vertically. Both parameters are real numbers. Values that are smaller than 1.0 reduce the unit size and values above 1.0 increase the unit size. Values of 1.0 leave the units the same size.
     </p>
-    <p>Using negative numbers you can do axis mirroring (for example using translate(0,canvas.height); scale(1,-1); you will have the well-known Cartesian coordinate system, with the origin in the bottom left corner).</p>
+    <p>Вправо</p>
     <h3>Basic animations</h3>
+    <p>Since we're using JavaScript to control &lt;canvas&gt; elements, it's also very easy to make (interactive) animations. 
+        Probably the biggest limitation is, that once a shape gets drawn, it stays that way. If we need to move it we have to redraw it and everything that was drawn before it. It takes a lot of time to redraw complex frames and the performance depends highly on the speed of the computer it's running on.
+    </p>
+    <p>вниз</p>
+    <h3>Basic animation steps</h3>
+    <ol>
+        <li>Clear the canvas
+            Unless the shapes you'll be drawing fill the complete canvas (for instance a backdrop image), you need to clear any shapes that have been drawn previously. The easiest way to do this is using the clearRect() method.
+        </li>
+        <li>Save the canvas state
+            If you're changing any setting (such as styles, transformations, etc.) which affect the canvas state and you want to make sure the original state is used each time a frame is drawn, you need to save that original state.
+        </li>
+        <li>Draw animated shapes
+            The step where you do the actual frame rendering.
+        </li>
+        <li>Restore the canvas state
+            If you've saved the state, restore it before drawing a new frame.
+        </li>
+    </ol>
+    <p>Вниз</p>
+    <h4>Controlling an animation</h4>
+    <p>Shapes are drawn to the canvas by using the canvas methods directly or by calling custom functions. In normal circumstances, we only see these results appear on the canvas when the script finishes executing. For instance, it isn't possible to do an animation from within a for loop.
+        That means we need a way to execute our drawing functions over a period of time. There are two ways to control an animation like this
+    </p>
+    <p>Вправо</p>
+    <h3>Optimizing canvas</h3>
+    <p><b>Pre-render similar primitives or repeating objects on an offscreen canvas</b> If you find yourself repeating some of the same drawing operations on each animation frame, consider offloading them to an offscreen canvas. You can then render the offscreen image to your primary canvas as often as needed, without unnecessarily repeating the steps needed to generate it in the first place. </p>
+    <p><b>Avoid floating-point coordinates and use integers instead</b> Sub-pixel rendering occurs when you render objects on a canvas without whole values.
+        This forces the browser to do extra calculations to create the anti-aliasing effect. To avoid this, make sure to round all co-ordinates used in calls to drawImage() using Math.floor(), for example.
+    </p>
+    <p><b>Don’t scale images in drawImage</b> Cache various sizes of your images on an offscreen canvas when loading as opposed to constantly scaling them in drawImage().</p>
+    <p><b>Use multiple layered canvases for complex scenes</b></p>
+    <p><b>Use plain CSS for large background images</b></p>
+    <p><b>Scaling canvas using CSS transforms</b></p>
+    <p>Вниз</p>
+    <h4>More tips</h4>
+    <ul>
+        <li>Batch canvas calls together. For example, draw a polyline instead of multiple separate lines.</li>
+        <li>Avoid unnecessary canvas state changes.</li>
+        <li>Render screen differences only, not the whole new state.</li>
+        <li>Avoid the shadowBlur property whenever possible.</li>
+        <li>Avoid text rendering whenever possible.</li>
+        <li>Try different ways to clear the canvas (clearRect() vs. fillRect() vs. resizing the canvas).</li>
+        <li>With animations, use window.requestAnimationFrame() instead of window.setInterval()</li>
+        <li>Be careful with heavy physics libraries.</li>
+    </ul>
 </body>
 </html>
